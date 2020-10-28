@@ -2,27 +2,27 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './index.js',
+    entry: './src/index.tsx',
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'output.js',
-        libraryTarget: 'umd',
+        filename: 'bundle.js',
     },
-    mode: "development",
     plugins: [
-        new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'index.html') }),
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
     },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
+                test: /\.tsx?$/,
+                exclude: '/node_modules/',
+                use: 'ts-loader',
             }
         ]
     }
