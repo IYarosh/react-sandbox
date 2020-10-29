@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Input from './components/Input';
 
 function App() {
-    return (<div>asd</div>);
+    const handleChange = (newValue: string) => {
+        console.log(newValue);
+    }
+
+    return (
+        <div>
+            <Input template="XX-XXX-XX-XX" onChange={handleChange} />
+        </div>
+    );
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
